@@ -27,38 +27,37 @@ void main() {
     puestoEmpleado = stdin.readLineSync()!;
     print("ingrese el tipo de contrato del Empleado ${i + 1}");
     tipoContratoEmpleado = stdin.readLineSync()!;
-
+// se crea objeto de la clase empleado
+// cuando instancio  a un objeto llamo al contructor
     Empleado empleadoTemporal = Empleado(nombreEmpleado, edadEmpleado,
         salarioEmpleado, puestoEmpleado, tipoContratoEmpleado);
+        //agrego a la lista 
     empleados.add(empleadoTemporal);
   }
+  // llamo al metodo 
   mostrarInformacion(empleados);
 }
 
 void mostrarInformacion(List<Empleado> empleados) {
   for (var i = 0; i < empleados.length; i++) {
-    Empleado empleadoTemporal = Empleado(empleados[i].nombre, empleados[i].edad,
-        empleados[i].salario, empleados[i].puesto, empleados[i].tipoContrato);
-    empleadoTemporal.mostrarInformacion();
     print('--' * 30);
     print('*EMPLEADO #${i + 1}*');
-
-    //Método para mostrar información
+    // mostrar informacion
     empleados[i].mostrarInformacion();
 
-    //Método para aumentar el salario
+    // aumentar el salario
     print('--');
     print('El salario del empleado aumentó');
     print('Digite el porcentaje en el que el salario aumentará: ');
     double porcentajeAumentoSalario = double.parse(stdin.readLineSync()!);
     empleados[i].aumentarSalario(porcentajeAumentoSalario);
 
-    //Método para cumplir años
+    //cumplir años
     print('--');
     print('¡Feliz Cumpleaños para el empleado!');
     empleados[i].cumplirAnios();
 
-    //Método para cambiar el puesto del empleado
+    // cambiar el puesto del empleado
     print('--');
     print(
         'Si el empleado esta en otro puesto, escriba el puesto en el que el empleado esta: ');

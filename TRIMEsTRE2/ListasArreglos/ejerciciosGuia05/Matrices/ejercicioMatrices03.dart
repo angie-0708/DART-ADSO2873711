@@ -32,7 +32,7 @@ void main(){
   for (int i = 0; i < totalArticulo.length; i++){
     print("el total del turno #${i+1} es: ${totalTurnos[i]}");
   }
-  for (int )
+
  }
 
 
