@@ -1,0 +1,110 @@
+CREATE DATABASE universidad;
+
+USE universidad;
+
+// PARA CREAR
+CREATE TABLE curso (
+	idCurso MEDIUMINT PRIMARY KEY AUTO_INCREMENT,
+	nombre VARCHAR(50) NOT NULL,
+	fechaInicio DATE NOT NULL,
+	fechaFin DATE NOT NULL,
+	cantidadEstudiantes MEDIUMINT NOT NULL
+);
+
+CREATE TABLE estudiante (
+	codEstudiante MEDIUMINT PRIMARY KEY AUTO_INCREMENT,
+	nombre VARCHAR(50) NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	telefono VARCHAR(15),
+	fkIdCurso MEDIUMINT NOT NULL,
+	FOREIGN KEY (fkIdCurso) REFERENCES curso (idCurso)
+);
+
+CREATE TABLE examen (
+	idExamen MEDIUMINT PRIMARY KEY AUTO_INCREMENT,
+	nota TINYINT(4) NOT NULL,
+	fechaRealizacion DATETIME NOT NULL,
+	fkIdCurso MEDIUMINT NOT NULL,
+	FOREIGN KEY (fkIdCurso) REFERENCES curso (idCurso),
+	fkCodEstudiante MEDIUMINT NOT NULL,
+	FOREIGN KEY (fkIdCurso) REFERENCES estudiante (codEstudiante)
+);
+
+CREATE TABLE pregunta (
+	idPregunta MEDIUMINT PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(255) NOT NULL,
+	respuesta TEXT NOT NULL,
+	tema VARCHAR(100) NOT NULL,
+	fkIdExamen MEDIUMINT NOT NULL,
+	FOREIGN KEY (fkIdExamen) REFERENCES examen (idExamen)
+
+
+);
+// PARA INSERTAR
+INSERT INTO curso(nombre,fechaInicio,fechaFin,cantidadEstudiantes)
+VALUES("ADSO", "224-07-23", "2026-10-01", "26");
+
+INSERT INTO curso(nombre,fechaInicio,fechaFin,cantidadEstudiantes)
+VALUES("ADSO", "2025-01-20", "2028-05-29", "29");
+
+
+INSERT INTO curso(nombre,fechaInicio,fechaFin,cantidadEstudiantes)
+VALUES("ADSO", "2022-03-30", "2025-06-30", "36");
+
+INSERT INTO curso(nombre,fechaInicio,fechaFin,cantidadEstudiantes)
+VALUES("ADSO", "2024-02-12", "2029-05-28", "15");
+
+INSERT INTO estudiante(nombre, email, telefono, fkIdCurso)
+	VALUES ("Angie Dahiana Rios Quintero", "angie0410@gmail.com", "3228667453", "1");
+
+INSERT INTO estudiante(nombre, email, telefono, fkIdCurso)
+	VALUES ("Andres Giraldo Cardona", "andres1022@gmail.com", "3120657480", "2");
+
+INSERT INTO estudiante(nombre, email, telefono, fkIdCurso)
+	VALUES ("Carolina Torres Infante Perez", "juanfer00@gmail.com", "3112200099", "3");
+
+INSERT INTO estudiante(nombre, email, telefono, fkIdCurso)
+	VALUES ("Ricardo Rios Nuñez", "ricardo55@gmail.com", "3100000099", "4");
+
+
+
+// PARA MODIFICAR
+ALTER TABLE estudiante MODIFY COLUMN telefono VARCHAR(20);
+
+INSERT INTO examen(nota, fechaRealizacion, fkIdCurso, fkCodEstudiante)
+	VALUES('4.4','2025-08-20 08:30:00','1','1');
+
+INSERT INTO examen(nota, fechaRealizacion, fkIdCurso, fkCodEstudiante)
+	VALUES('3.9','2024-08-01 07:15:30','2','2');
+
+INSERT INTO examen(nota, fechaRealizacion, fkIdCurso, fkCodEstudiante)
+	VALUES('5.0','2026-05-24 03:00:00','3','3');
+
+
+
+ALTER TABLE examen MODIFY COLUMN nota float;
+
+INSERT INTO pregunta(pregunta,respuesta,tema,fkIdExamen)
+VALUE('¿cuanto es 50 + 87?', 'la respuesta es 137','matematicas','1');
+
+INSERT INTO pregunta(pregunta,respuesta,tema,fkIdExamen)
+VALUE('¿cuanto es la mitad de 2 + 2?', 'la respuesta es 3','matematicas','1');
+
+INSERT INTO pregunta(pregunta,respuesta,tema,fkIdExamen)
+VALUE('escriba una palabra que lleve tilde', 'la respuesta es papá','español','2');
+
+INSERT INTO pregunta(pregunta,respuesta,tema,fkIdExamen)
+VALUE('escriba una palabra palindroma', 'la respuesta es Arenera','español','2');
+
+INSERT INTO pregunta(pregunta,respuesta,tema,fkIdExamen)
+VALUE('¿cuantos huesos tiene el cuerpo humano?', 'la respuesta es 206','ciencias','3');
+
+INSERT INTO pregunta(pregunta,respuesta,tema,fkIdExamen)
+VALUE('¿cual es el organo mas grande de la piel?', 'la respuesta es la piel','ciencias','3');
+
+
+
+
+
+
+
